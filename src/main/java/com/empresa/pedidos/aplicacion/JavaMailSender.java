@@ -1,6 +1,7 @@
 package com.empresa.pedidos.aplicacion;
 
 import com.empresa.pedidos.dominio.Pedido;
+import com.empresa.pedidos.dominio.PedidoProcesadoEvent;
 import com.empresa.pedidos.dominio.puertos.ServicioNotificacion;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,9 @@ public class JavaMailSender {
      */
     public void send(Object message) {
         if (message instanceof Pedido pedido) {
+            var evento = new PedidoProcesadoEvent(pedido);
             for (ServicioNotificacion s : notificaciones) {
-                s.notificarPedidoProcesado(pedido);
+                s.notificar(evento);
             }
         } else {
             System.out.println("[JavaMailSender] send: " + message);

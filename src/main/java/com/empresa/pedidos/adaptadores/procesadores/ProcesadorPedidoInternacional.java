@@ -9,11 +9,14 @@ import com.empresa.pedidos.dominio.EstadoPedido;
 // Implementación Internacional
 @Component
 public class ProcesadorPedidoInternacional implements ProcesadorPedido {
- @Override public TipoPedido getTipo() { return
-TipoPedido.INTERNACIONAL; }
- @Override
- public void procesar(Pedido pedido) {
- pedido.setCosto(pedido.getSubtotal() * 1.5 + 25.0);
- pedido.setEstado(EstadoPedido.PROCESADO);
- }
+    @Override
+    public TipoPedido getTipo() {
+        return TipoPedido.INTERNACIONAL;
+    }
+
+    @Override
+    public void procesar(Pedido pedido) {
+        pedido.setCosto(pedido.getSubtotal() * 1.5 + 25.0);
+        pedido.setEstado(EstadoPedido.PROCESADO);
+    }
 }

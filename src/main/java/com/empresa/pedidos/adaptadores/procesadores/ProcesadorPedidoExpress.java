@@ -9,10 +9,14 @@ import com.empresa.pedidos.dominio.EstadoPedido;
 // Implementación Express
 @Component
 public class ProcesadorPedidoExpress implements ProcesadorPedido {
- @Override public TipoPedido getTipo() { return TipoPedido.EXPRESS; }
- @Override
- public void procesar(Pedido pedido) {
- pedido.setCosto(pedido.getSubtotal() * 1.3);
- pedido.setEstado(EstadoPedido.PROCESADO);
- }
+    @Override
+    public TipoPedido getTipo() {
+        return TipoPedido.EXPRESS;
+    }
+
+    @Override
+    public void procesar(Pedido pedido) {
+        pedido.setCosto(pedido.getSubtotal() * 1.3);
+        pedido.setEstado(EstadoPedido.PROCESADO);
+    }
 }

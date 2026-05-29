@@ -1,16 +1,18 @@
 package com.empresa.pedidos.infraestructura.notificaciones;
 
-import com.empresa.pedidos.dominio.Pedido;
 import com.empresa.pedidos.dominio.puertos.ServicioNotificacion;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.context.event.EventListener;
+import com.empresa.pedidos.dominio.PedidoProcesadoEvent;
 
-@Primary
+// Listener de email
 @Component
 public class NotificacionEmail implements ServicioNotificacion {
-
-    @Override
-    public void notificarPedidoProcesado(Pedido pedido) {
-        System.out.println("[Email] Pedido procesado: " + pedido.getId() + " para " + pedido.getEmailCliente());
-    }
+ @EventListener
+ @Override
+ public void notificar(PedidoProcesadoEvent evento) {
+ // Lógica de envío de email
+ System.out.println("Email enviado para pedido: "
+ + evento.pedido().getId());
+ }
 }
